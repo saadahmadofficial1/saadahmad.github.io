@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saad Ahmad — Content Creator · Dubai, UAE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#111110;--bg2:#1a1917;--bg3:#222220;--bg4:#2a2927;
+    --line:rgba(255,255,255,0.08);
+    --text:#f0ede8;--text-dim:rgba(240,237,232,0.55);--text-faint:rgba(240,237,232,0.28);
+    --accent:#e8c97a;--accent-rgb:232,201,122;
+    --tag-bg:rgba(240,237,232,0.07);
+    --tr:0.32s cubic-bezier(0.4,0,0.2,1);
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Epilogue',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden;}
+
+  .cover{width:100%;height:300px;background:linear-gradient(to bottom,rgba(17,17,16,0) 40%,var(--bg) 100%),linear-gradient(135deg,#1a2744 0%,#0e1a38 30%,#111827 60%,#1a1208 100%);position:relative;overflow:hidden;}
+  .cover-pattern{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,0.025) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,0.025) 40px);}
+  .cover-glow{position:absolute;width:600px;height:400px;background:radial-gradient(ellipse,rgba(var(--accent-rgb),0.14) 0%,transparent 70%);top:-100px;left:30%;}
+  .cover-glow2{position:absolute;width:400px;height:300px;background:radial-gradient(ellipse,rgba(var(--accent-rgb),0.07) 0%,transparent 70%);bottom:0;right:10%;}
+
+  .container{max-width:940px;margin:0 auto;padding:0 2rem;}
+
+  .profile-block{margin-top:-60px;position:relative;z-index:10;display:flex;align-items:flex-end;gap:1.8rem;margin-bottom:2rem;}
+  .avatar{width:110px;height:110px;border-radius:50%;border:4px solid var(--bg);background:linear-gradient(135deg,#1a3a6e 0%,#0d1f3c 100%);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;color:var(--accent);flex-shrink:0;box-shadow:0 8px 40px rgba(0,0,0,0.6);transition:color var(--tr);}
+  .profile-info{padding-bottom:.4rem;}
+  .profile-name{font-family:'Playfair Display',serif;font-weight:800;font-size:2rem;line-height:1.1;margin-bottom:.35rem;}
+  .profile-title{font-size:.9rem;color:var(--text-dim);letter-spacing:.04em;margin-bottom:.6rem;}
+  .profile-tags{display:flex;flex-wrap:wrap;gap:.4rem;}
+  .tag{background:var(--tag-bg);border:1px solid var(--line);border-radius:100px;padding:.2rem .75rem;font-size:.72rem;letter-spacing:.06em;color:var(--text-dim);}
+  .tag.ac{background:rgba(var(--accent-rgb),0.1);border-color:rgba(var(--accent-rgb),0.25);color:var(--accent);transition:all var(--tr);}
+
+  .selector-wrap{margin-bottom:2rem;}
+  .selector-label{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint);margin-bottom:.75rem;}
+  .selector-grid{display:flex;flex-wrap:wrap;gap:.5rem;}
+  .sector-btn{display:flex;align-items:center;gap:.5rem;background:var(--bg2);border:1px solid var(--line);border-radius:100px;padding:.45rem 1.1rem;font-family:'Epilogue',sans-serif;font-size:.8rem;color:var(--text-dim);cursor:pointer;transition:all .22s;white-space:nowrap;}
+  .sector-btn:hover{border-color:rgba(var(--accent-rgb),0.35);color:var(--text);}
+  .sector-btn.active{background:rgba(var(--accent-rgb),0.12);border-color:rgba(var(--accent-rgb),0.5);color:var(--accent);font-weight:600;}
+
+  .section-header{display:flex;align-items:center;gap:.8rem;margin:2.5rem 0 1.2rem;}
+  .section-header h2{font-family:'Playfair Display',serif;font-weight:700;font-size:1.15rem;white-space:nowrap;}
+  .section-header::after{content:'';flex:1;height:1px;background:var(--line);}
+
+  .bio-block{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:1.8rem 2rem;margin-bottom:1rem;}
+  .bio-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;}
+  .bio-text{font-size:.92rem;line-height:1.85;color:var(--text-dim);}
+  .bio-text strong{color:var(--text);font-weight:500;}
+  .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .stat-box{background:var(--bg3);border:1px solid var(--line);border-radius:8px;padding:1rem 1.2rem;text-align:center;}
+  .stat-num{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--accent);line-height:1;margin-bottom:.3rem;}
+  .stat-label{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);}
+
+  .package-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:1rem;}
+  .package-card{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:1.4rem 1.2rem;transition:border-color .2s;}
+  .package-card:hover{border-color:rgba(var(--accent-rgb),0.25);}
+  .pkg-icon{font-size:1.5rem;margin-bottom:.7rem;}
+  .pkg-num{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--accent);margin-bottom:.3rem;}
+  .pkg-title{font-size:.88rem;font-weight:600;color:var(--text);margin-bottom:.35rem;}
+  .pkg-desc{font-size:.76rem;color:var(--text-faint);line-height:1.6;}
+  .pkg-badge{display:inline-block;background:rgba(var(--accent-rgb),0.1);border:1px solid rgba(var(--accent-rgb),0.2);border-radius:4px;font-size:.65rem;letter-spacing:.06em;color:var(--accent);padding:.15rem .5rem;margin-bottom:.5rem;}
+
+  .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+  .project-card{background:var(--bg2);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:border-color .25s,transform .2s,box-shadow .25s;text-decoration:none;color:inherit;display:flex;flex-direction:column;}
+  .project-card:hover{border-color:rgba(var(--accent-rgb),0.3);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,0.4);}
+  .project-thumb{width:100%;height:155px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+  .thumb-icon{font-size:3rem;opacity:.65;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.5));transition:transform .3s,opacity .3s;}
+  .project-card:hover .thumb-icon{transform:scale(1.1);opacity:.9;}
+  .thumb-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;align-items:center;justify-content:center;transition:background .25s;}
+  .project-card:hover .thumb-overlay{background:rgba(0,0,0,0.15);}
+  .play-btn{width:44px;height:44px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);opacity:0;transform:scale(.8);transition:opacity .25s,transform .25s;border:1px solid rgba(255,255,255,0.2);}
+  .project-card:hover .play-btn{opacity:1;transform:scale(1);}
+  .play-btn svg{width:16px;height:16px;fill:white;margin-left:2px;}
+  .thumb-cat{position:absolute;top:.7rem;left:.7rem;background:rgba(17,17,16,0.82);border:1px solid var(--line);border-radius:6px;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);padding:.2rem .55rem;backdrop-filter:blur(6px);}
+  .delivery-badge{position:absolute;top:.7rem;right:.7rem;background:rgba(var(--accent-rgb),0.15);border:1px solid rgba(var(--accent-rgb),0.3);border-radius:6px;font-size:.63rem;letter-spacing:.06em;color:var(--accent);padding:.2rem .5rem;backdrop-filter:blur(6px);}
+  .project-body{padding:1.1rem 1.3rem 1.3rem;flex:1;display:flex;flex-direction:column;}
+  .project-title{font-family:'Playfair Display',serif;font-weight:700;font-size:.95rem;margin-bottom:.4rem;color:var(--text);line-height:1.3;}
+  .project-desc{font-size:.81rem;line-height:1.7;color:var(--text-dim);flex:1;margin-bottom:.9rem;}
+  .project-meta{font-size:.72rem;color:var(--text-faint);margin-bottom:.7rem;font-style:italic;}
+  .project-link{display:inline-flex;align-items:center;gap:.35rem;font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);text-decoration:none;font-weight:500;transition:gap .2s;margin-top:auto;}
+  .project-link:hover{gap:.6rem;}
+  .project-link svg{width:12px;height:12px;}
+  .project-card-wide{grid-column:span 2;flex-direction:row;}
+  .project-card-wide .project-thumb{width:240px;height:auto;flex-shrink:0;}
+
+  .universal-divider{display:flex;align-items:center;gap:.8rem;margin:2.8rem 0 1.5rem;}
+  .universal-divider span{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint);white-space:nowrap;}
+  .universal-divider::before,.universal-divider::after{content:'';flex:1;height:1px;background:var(--line);}
+
+  .ai-block{background:linear-gradient(135deg,rgba(var(--accent-rgb),0.06) 0%,var(--bg2) 60%);border:1px solid rgba(var(--accent-rgb),0.2);border-radius:12px;padding:2rem;margin-bottom:1rem;position:relative;overflow:hidden;}
+  .ai-block::before{content:'AI';position:absolute;right:2rem;top:50%;transform:translateY(-50%);font-family:'Playfair Display',serif;font-size:8rem;font-weight:800;color:rgba(var(--accent-rgb),0.04);line-height:1;pointer-events:none;}
+  .ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;}
+  .ai-text{font-size:.92rem;line-height:1.85;color:var(--text-dim);}
+  .ai-text strong{color:var(--text);font-weight:500;}
+  .ai-chars{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;}
+  .ai-char-card{background:var(--bg3);border:1px solid var(--line);border-radius:10px;padding:1.2rem;text-align:center;transition:border-color .2s;}
+  .ai-char-card:hover{border-color:rgba(var(--accent-rgb),0.25);}
+  .ai-char-icon{font-size:2.2rem;margin-bottom:.6rem;}
+  .ai-char-name{font-size:.82rem;font-weight:600;color:var(--text);margin-bottom:.25rem;}
+  .ai-char-desc{font-size:.72rem;color:var(--text-faint);line-height:1.5;}
+  .ai-sample-row{display:flex;gap:.75rem;margin-top:1.2rem;flex-wrap:wrap;}
+  .ai-sample-pill{background:var(--bg3);border:1px solid var(--line);border-radius:8px;padding:.6rem 1rem;font-size:.78rem;color:var(--text-dim);display:flex;align-items:center;gap:.5rem;transition:border-color .2s;}
+  .ai-sample-pill:hover{border-color:rgba(var(--accent-rgb),0.3);}
+
+  .steps-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1rem;}
+  .step-card{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:1.2rem;transition:border-color .2s;}
+  .step-card:hover{border-color:rgba(var(--accent-rgb),0.2);}
+  .step-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:rgba(var(--accent-rgb),0.15);line-height:1;margin-bottom:.5rem;}
+  .step-title{font-size:.82rem;font-weight:600;color:var(--text);margin-bottom:.25rem;}
+  .step-desc{font-size:.74rem;color:var(--text-faint);line-height:1.5;}
+
+  .tools-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem;}
+  .tool-badge{background:var(--bg3);border:1px solid var(--line);border-radius:6px;padding:.35rem .9rem;font-size:.78rem;color:var(--text-dim);transition:border-color .2s,color .2s;}
+  .tool-badge:hover{border-color:rgba(var(--accent-rgb),0.3);color:var(--text);}
+
+  .testimonials-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+  .testimonial-card{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:1.5rem;position:relative;}
+  .testimonial-card::before{content:'\201C';position:absolute;top:.8rem;right:1.2rem;font-family:'Playfair Display',serif;font-size:4rem;color:rgba(var(--accent-rgb),0.1);line-height:1;}
+  .stars{color:var(--accent);font-size:.75rem;letter-spacing:.05em;margin-bottom:.8rem;}
+  .testimonial-text{font-size:.86rem;line-height:1.75;color:var(--text-dim);margin-bottom:1.2rem;font-style:italic;}
+  .testimonial-author{display:flex;align-items:center;gap:.75rem;}
+  .author-avatar{width:36px;height:36px;border-radius:50%;background:var(--bg4);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:600;color:var(--accent);font-family:'Playfair Display',serif;flex-shrink:0;}
+  .author-name{font-size:.82rem;font-weight:500;color:var(--text);}
+  .author-title{font-size:.72rem;color:var(--text-faint);}
+
+  .certs-list{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem;}
+  .cert-item{display:flex;align-items:center;gap:1rem;background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:.85rem 1.2rem;transition:border-color .2s;}
+  .cert-item:hover{border-color:rgba(var(--accent-rgb),0.2);}
+  .cert-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+  .cert-name{font-size:.86rem;color:var(--text);flex:1;}
+  .cert-issuer{font-size:.72rem;color:var(--text-faint);letter-spacing:.06em;}
+
+  .contact-block{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:2rem;margin-bottom:1rem;}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;}
+  .available-pill{display:inline-flex;align-items:center;gap:.6rem;background:rgba(59,219,120,0.08);border:1px solid rgba(59,219,120,0.2);border-radius:100px;padding:.4rem 1rem;font-size:.78rem;color:#3bdb78;margin-bottom:1.2rem;}
+  .avail-dot{width:7px;height:7px;background:#3bdb78;border-radius:50%;animation:blink 2s infinite;}
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+  .contact-intro{font-size:.9rem;line-height:1.8;color:var(--text-dim);margin-bottom:1.2rem;}
+  .contact-links{display:flex;flex-direction:column;gap:.6rem;}
+  .contact-link{display:flex;align-items:center;gap:.9rem;background:var(--bg3);border:1px solid var(--line);border-radius:8px;padding:.85rem 1.1rem;text-decoration:none;color:var(--text);font-size:.86rem;transition:border-color .2s,background .2s,transform .15s;}
+  .contact-link:hover{border-color:rgba(var(--accent-rgb),0.3);background:var(--bg4);transform:translateX(3px);}
+  .contact-link-icon{font-size:1rem;width:20px;text-align:center;}
+  .contact-link-label{color:var(--text-faint);font-size:.72rem;display:block;}
+  .contact-link-val{font-weight:500;}
+  .btn-full{display:flex;align-items:center;justify-content:center;gap:.7rem;width:100%;background:var(--accent);color:#111;padding:.9rem;border-radius:8px;font-family:'Epilogue',sans-serif;font-size:.88rem;font-weight:600;text-decoration:none;margin-top:.8rem;transition:filter .2s,transform .15s;letter-spacing:.03em;}
+  .btn-full:hover{filter:brightness(1.1);transform:translateY(-1px);}
+  .btn-outline{display:flex;align-items:center;justify-content:center;gap:.7rem;width:100%;background:transparent;color:var(--accent);border:1px solid rgba(var(--accent-rgb),0.3);padding:.85rem;border-radius:8px;font-family:'Epilogue',sans-serif;font-size:.86rem;font-weight:500;text-decoration:none;margin-top:.6rem;transition:background .2s,border-color .2s;}
+  .btn-outline:hover{background:rgba(var(--accent-rgb),0.08);border-color:rgba(var(--accent-rgb),0.5);}
+
+  .footer{border-top:1px solid var(--line);padding:1.5rem 0;margin-top:3rem;display:flex;align-items:center;justify-content:space-between;font-size:.75rem;color:var(--text-faint);}
+
+  .fade-in{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease;}
+  .fade-in.visible{opacity:1;transform:none;}
+  .dyn{transition:opacity .28s ease,transform .28s ease;}
+  .dyn.out{opacity:0;transform:translateY(8px);}
+
+  ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:3px;}
+
+  @media(max-width:720px){
+    .bio-grid,.projects-grid,.package-grid,.steps-row,.testimonials-grid,.contact-grid,.ai-grid,.ai-chars{grid-template-columns:1fr;}
+    .project-card-wide{flex-direction:column;}.project-card-wide .project-thumb{width:100%;height:155px;}
+    .profile-block{flex-direction:column;align-items:flex-start;}
+    .footer{flex-direction:column;gap:.5rem;text-align:center;}
+    .selector-grid{gap:.4rem;}.sector-btn{font-size:.75rem;padding:.4rem .85rem;}
+    .ai-block::before{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-pattern"></div>
+  <div class="cover-glow"></div>
+  <div class="cover-glow2"></div>
+</div>
+
+<div class="container">
+
+  <div class="profile-block fade-in">
+    <div class="avatar">SA</div>
+    <div class="profile-info">
+      <div class="profile-name">Saad Ahmad</div>
+      <div class="profile-title" id="profileTitle">Filmmaker &amp; Content Creator · Dubai, UAE</div>
+      <div class="profile-tags">
+        <span class="tag ac" id="accentTag">🥇 Gold Medalist — Media Studies</span>
+        <span class="tag">3+ Years UAE</span>
+        <span class="tag">Video Production</span>
+        <span class="tag">AI Characters</span>
+        <span class="tag">EN · UR · AR · HI</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="selector-wrap fade-in">
+    <div class="selector-label">Select your industry — content updates to match your needs</div>
+    <div class="selector-grid" id="selectorGrid">
+      <button class="sector-btn active" data-s="realestate"><span>🏠</span> Real Estate</button>
+      <button class="sector-btn" data-s="automotive"><span>🚗</span> Automotive</button>
+      <button class="sector-btn" data-s="finance"><span>📊</span> Finance / FinTech</button>
+      <button class="sector-btn" data-s="restaurant"><span>🍽️</span> Restaurants &amp; F&amp;B</button>
+      <button class="sector-btn" data-s="events"><span>🎪</span> Corporate Events</button>
+    </div>
+  </div>
+
+  <div id="dynWrap">
+    <div class="bio-block dyn" id="pitchBlock">
+      <div class="bio-grid">
+        <p class="bio-text" id="pitchText"></p>
+        <div class="stats-grid" id="statsGrid"></div>
+      </div>
+    </div>
+    <div class="section-header dyn"><h2 id="pkgHeading">📦 What You Get</h2></div>
+    <div class="package-grid dyn" id="packageGrid"></div>
+    <div class="section-header dyn"><h2 id="primaryWorkHeading">🎥 Primary Work Samples</h2></div>
+    <div class="projects-grid dyn" id="primaryGrid"></div>
+    <div class="section-header dyn"><h2>⚡ How It Works</h2></div>
+    <div class="steps-row dyn" id="stepsRow"></div>
+  </div>
+
+  <div class="universal-divider fade-in"><span>More work across all sectors</span></div>
+
+  <div class="section-header fade-in"><h2>📣 Paid Ads UGC Creatives</h2></div>
+  <div class="projects-grid fade-in">
+    <a href="https://drive.google.com/drive/folders/1fycKPFXczJAhqX0dVMo63gIKnI1K8SPg?usp=drive_link" target="_blank" class="project-card">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#0d1f3d 0%,#07111f 100%)">
+        <span class="thumb-icon">📣</span>
+        <div class="thumb-overlay"><div class="play-btn"><svg viewBox="0 0 16 16"><path d="M3 2l11 6-11 6z"/></svg></div></div>
+        <div class="thumb-cat">Paid Ads · UGC Creatives</div>
+        <div class="delivery-badge">⚡ 24–48 hrs</div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Paid UGC Ad Creatives — Meta · TikTok · Google</div>
+        <div class="project-meta">Amana MENA · Multi-sector applicable</div>
+        <div class="project-desc">4 to 8 UGC-style ad creatives per campaign. Scroll-stopping openers, authentic on-camera delivery, and direct CTAs. Resulted in 30–40% revenue uplift across campaign periods. Format works for any industry — automotive offers, property launches, restaurant promos, or FinTech app acquisition.</div>
+        <span class="project-link">View Ad Creatives <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h8M6 2l4 4-4 4"/></svg></span>
+      </div>
+    </a>
+    <a href="https://drive.google.com/drive/folders/1ph77vr2VQplLXZmY35QXeQwWvMj0k70K?usp=drive_link" target="_blank" class="project-card">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#1a0e00 0%,#0d0700 100%)">
+        <span class="thumb-icon">📱</span>
+        <div class="thumb-overlay"><div class="play-btn"><svg viewBox="0 0 16 16"><path d="M3 2l11 6-11 6z"/></svg></div></div>
+        <div class="thumb-cat">Organic UGC · Weekly Content</div>
+        <div class="delivery-badge">⚡ 24–48 hrs</div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Organic UGC — Weekly Social Content</div>
+        <div class="project-meta">Amana MENA · Multi-sector applicable</div>
+        <div class="project-desc">Weekly organic UGC content covering market updates, brand storytelling, and audience engagement. Scaled organic views from 500 to 7,000+ per video through consistent format testing and trend alignment. Applicable to any brand needing regular social presence.</div>
+        <span class="project-link">View Organic Content <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h8M6 2l4 4-4 4"/></svg></span>
+      </div>
+    </a>
+  </div>
+
+  <div class="section-header fade-in"><h2>🎪 Event Highlights</h2></div>
+  <div class="projects-grid fade-in">
+    <a href="https://drive.google.com/file/d/1Nr7xVtkHESxPn4RHptMmIZKnI1K8SPg/view?usp=drive_link" target="_blank" class="project-card">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#180a2d 0%,#0d0518 100%)">
+        <span class="thumb-icon">🎪</span>
+        <div class="thumb-overlay"><div class="play-btn"><svg viewBox="0 0 16 16"><path d="M3 2l11 6-11 6z"/></svg></div></div>
+        <div class="thumb-cat">Event · Highlight Film</div>
+        <div class="delivery-badge">⚡ 24–48 hrs</div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Event Highlight Reel — Amana MENA</div>
+        <div class="project-meta">Corporate Event · Dubai</div>
+        <div class="project-desc">Full corporate event highlight film capturing speakers, audience energy, branding moments, and networking. Delivered in landscape for LinkedIn and YouTube plus vertical cuts for Instagram Stories and TikTok within 24 to 48 hours of the event.</div>
+        <span class="project-link">Watch Highlight Film <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h8M6 2l4 4-4 4"/></svg></span>
+      </div>
+    </a>
+    <a href="https://drive.google.com/file/d/1X7TiA7-aLcgDho1WwoaWd4IUcWmlvJUS/view?usp=drive_link" target="_blank" class="project-card">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#2d0a1a 0%,#180510 100%)">
+        <span class="thumb-icon">💄</span>
+        <div class="thumb-overlay"><div class="play-btn"><svg viewBox="0 0 16 16"><path d="M3 2l11 6-11 6z"/></svg></div></div>
+        <div class="thumb-cat">Event · Beauty &amp; Brand</div>
+        <div class="delivery-badge">⚡ 24–48 hrs</div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Brand Event Highlight — Nazih Group</div>
+        <div class="project-meta">Beauty Brand Activation · Sharjah</div>
+        <div class="project-desc">Event coverage for Nazih Group beauty brand activation. Captured product launches, ambassador moments, salon demonstrations, and brand atmosphere. Multi-angle coverage edited into a polished highlight film and short social clips.</div>
+        <span class="project-link">Watch Event Film <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h8M6 2l4 4-4 4"/></svg></span>
+      </div>
+    </a>
+  </div>
+
+  <div class="section-header fade-in"><h2>✨ Branding &amp; Motion Graphics</h2></div>
+  <div class="projects-grid fade-in">
+    <a href="https://drive.google.com/drive/folders/10yNC2smEsq7OIqtA0s6fdYjheVM4QMin?usp=drive_link" target="_blank" class="project-card">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#0a0d1a 0%,#050710 100%)">
+        <span class="thumb-icon">✨</span>
+        <div class="thumb-overlay"><div class="play-btn"><svg viewBox="0 0 16 16"><path d="M3 2l11 6-11 6z"/></svg></div></div>
+        <div class="thumb-cat">Motion Graphics · Branding</div>
+        <div class="delivery-badge">⏱ 48–72 hrs</div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Branding Videos — Motion Graphics</div>
+        <div class="project-meta">Amana MENA · FinTech Brand</div>
+        <div class="project-desc">Animated branding videos featuring motion graphics, kinetic typography, and branded transitions. Used for app launch promotions, product feature announcements, and brand identity reinforcement across social and digital channels.</div>
+        <span class="project-link">View Motion Work <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h8M6 2l4 4-4 4"/></svg></span>
+      </div>
+    </a>
+    <a href="https://drive.google.com/file/d/1nuBPKcAeQolVO2lhPGIGxuoDxm6trmle/view?usp=drive_link" target="_blank" class="project-card">
+      <div class="project-thumb" style="background:linear-gradient(135deg,#1a0a00 0%,#0d0700 100%)">
+        <span class="thumb-icon">🏢</span>
+        <div class="thumb-overlay"><div class="play-btn"><svg viewBox="0 0 16 16"><path d="M3 2l11 6-11 6z"/></svg></div></div>
+        <div class="thumb-cat">Corporate · Brand Story</div>
+        <div class="delivery-badge">⏱ 72–96 hrs</div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Corporate Timeline Video — Nazih Group</div>
+        <div class="project-meta">Corporate Brand Story · Nazih Group</div>
+        <div class="project-desc">Long-form corporate timeline and brand story video for Nazih Group. Covering company history, milestones, and vision. Motion graphics, archival content integration, and cinematic b-roll combined into a premium brand narrative piece.</div>
+        <span class="project-link">Watch Brand Story <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h8M6 2l4 4-4 4"/></svg></span>
+      </div>
+    </a>
+  </div>
+
+  <div class="section-header fade-in"><h2>🤖 AI Character &amp; Virtual Influencer Creation</h2></div>
+  <div class="ai-block fade-in">
+    <div class="ai-grid">
+      <div>
+        <p class="ai-text">
+          Beyond traditional video content, I create <strong>AI-generated virtual influencer characters</strong> tailored to your brand — a completely new way to market without the cost or complexity of traditional content production.<br><br>
+          My AI character <strong>"Mila"</strong> was developed from scratch: a fully realised virtual persona with consistent appearance, personality, and commercial integration capability. She can wear your products, appear in your locations, and promote your brand 24/7 at a fraction of traditional influencer costs.<br><br>
+          <strong>Any brand across any sector can commission a custom AI character.</strong> Real estate agencies, car dealerships, restaurants, FinTech brands — each character is built specifically around your brand identity and target audience.
+        </p>
+        <div class="ai-sample-row">
+          <div class="ai-sample-pill">✅ Consistent brand appearance</div>
+          <div class="ai-sample-pill">✅ Product integration shoots</div>
+          <div class="ai-sample-pill">✅ Multi-platform content</div>
+          <div class="ai-sample-pill">✅ No talent fees or scheduling</div>
+        </div>
+      </div>
+      <div>
+        <div class="ai-chars">
+          <div class="ai-char-card">
+            <div class="ai-char-icon">👩</div>
+            <div class="ai-char-name">Mila</div>
+            <div class="ai-char-desc">Lifestyle &amp; product influencer. UAE-based brand persona with 50+ generated scenarios.</div>
+          </div>
+          <div class="ai-char-card">
+            <div class="ai-char-icon">🎨</div>
+            <div class="ai-char-name">Your Brand</div>
+            <div class="ai-char-desc">Custom character designed around your brand colours, values, and target demographic.</div>
+          </div>
+          <div class="ai-char-card">
+            <div class="ai-char-icon">🚀</div>
+            <div class="ai-char-name">Scalable</div>
+            <div class="ai-char-desc">Once the character exists, new content can be generated rapidly for campaigns and seasonal promos.</div>
+          </div>
+        </div>
+        <div style="margin-top:1.2rem;background:var(--bg3);border:1px solid var(--line);border-radius:8px;padding:1rem 1.2rem;">
+          <div style="font-size:.78rem;color:var(--text-faint);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem;">Use Cases by Sector</div>
+          <div style="font-size:.8rem;color:var(--text-dim);line-height:1.8;">
+            🚗 <strong style="color:var(--text)">Automotive</strong> — AI character presenting your new arrivals<br>
+            🏠 <strong style="color:var(--text)">Real Estate</strong> — Virtual host walking through listings<br>
+            🍽️ <strong style="color:var(--text)">F&amp;B</strong> — AI food influencer reviewing your menu<br>
+            📊 <strong style="color:var(--text)">FinTech</strong> — Brand ambassador explaining products<br>
+            🎪 <strong style="color:var(--text)">Events</strong> — AI host promoting your event beforehand
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-header fade-in"><h2>🛠️ Tools &amp; Tech</h2></div>
+  <div class="tools-row fade-in">
+    <span class="tool-badge">Premiere Pro</span>
+    <span class="tool-badge">After Effects</span>
+    <span class="tool-badge">DaVinci Resolve</span>
+    <span class="tool-badge">CapCut</span>
+    <span class="tool-badge">Photoshop</span>
+    <span class="tool-badge">Gimbal Stabiliser</span>
+    <span class="tool-badge">4K Camera</span>
+    <span class="tool-badge">Midjourney</span>
+    <span class="tool-badge">ChatGPT</span>
+    <span class="tool-badge">Claude AI</span>
+    <span class="tool-badge">Gemini</span>
+    <span class="tool-badge">Meta Ads Manager</span>
+    <span class="tool-badge">TikTok Ads</span>
+    <span class="tool-badge">Google Ads</span>
+  </div>
+
+  <div class="section-header fade-in"><h2>💬 What Clients Say</h2></div>
+  <div class="testimonials-grid fade-in">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Saad consistently delivered high-quality content under strict compliance requirements. His ability to simplify complex financial topics for diverse audiences — in multiple languages — was exceptional. Zero violations across the entire engagement."</p>
+      <div class="testimonial-author"><div class="author-avatar">A</div><div><div class="author-name">Marketing Team</div><div class="author-title">Amana MENA Promotional Services · Dubai</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Outstanding visual content for our beauty brands. Saad managed multiple concurrent projects simultaneously, never missed a deadline, and brought a genuine creative instinct to every shoot. Highly recommended for any brand content work."</p>
+      <div class="testimonial-author"><div class="author-avatar">N</div><div><div class="author-name">Creative Director</div><div class="author-title">Nazih Group LLC · Sharjah</div></div></div>
+    </div>
+  </div>
+
+  <div class="section-header fade-in"><h2>🏅 Awards &amp; Certifications</h2></div>
+  <div class="certs-list fade-in">
+    <div class="cert-item"><div class="cert-dot" style="background:#e8c97a;"></div><span class="cert-name">🥇 Gold Medal — Media Studies, Highest Distinction Across 4 Campuses, Awarded by President of Pakistan</span><span class="cert-issuer">Iqra University · 2023</span></div>
+    <div class="cert-item"><div class="cert-dot"></div><span class="cert-name">Introduction to FinTech</span><span class="cert-issuer">CFI · 2025</span></div>
+    <div class="cert-item"><div class="cert-dot"></div><span class="cert-name">Financial Promotions Regulation, Ethics &amp; Compliance, Cybersecurity, Consumer Duty</span><span class="cert-issuer">LGCA · 2024</span></div>
+    <div class="cert-item"><div class="cert-dot"></div><span class="cert-name">Fundamentals of Digital Marketing</span><span class="cert-issuer">Google · 2023</span></div>
+    <div class="cert-item"><div class="cert-dot"></div><span class="cert-name">Foundations of Emerging Technologies &amp; Foresight</span><span class="cert-issuer">Dubai Future Foundation · 2023</span></div>
+    <div class="cert-item"><div class="cert-dot" style="background:#e8574a;"></div><span class="cert-name">🎬 Lift-Off Filmmaker Sessions · First-Time Filmmaker Sessions · Student World Impact Film Festival (5,000+ entries)</span><span class="cert-issuer">2022</span></div>
+  </div>
+
+  <div class="section-header fade-in"><h2>📬 Let's Talk</h2></div>
+  <div class="contact-block fade-in">
+    <div class="contact-grid">
+      <div>
+        <div class="available-pill"><div class="avail-dot"></div> Available — Dubai &amp; All UAE</div>
+        <p class="contact-intro" id="contactIntro">I offer a free sample video — I'll visit your location, shoot, and deliver within 24 hours. See the quality before committing to anything.</p>
+        <a href="#" class="btn-full" id="waBtn" target="_blank">💬 WhatsApp Me Now</a>
+        <a href="https://shorturl.at/nEIyK" target="_blank" class="btn-outline">View Full Portfolio</a>
+      </div>
+      <div class="contact-links">
+        <a href="tel:+971561911332" class="contact-link"><span class="contact-link-icon">📱</span><div><span class="contact-link-label">Phone / WhatsApp</span><span class="contact-link-val">+971 561 911 332</span></div></a>
+        <a href="mailto:saadipieces@gmail.com" class="contact-link"><span class="contact-link-icon">✉️</span><div><span class="contact-link-label">Email</span><span class="contact-link-val">saadipieces@gmail.com</span></div></a>
+        <a href="https://www.linkedin.com/in/saadahmadofficial1" target="_blank" class="contact-link"><span class="contact-link-icon">💼</span><div><span class="contact-link-label">LinkedIn</span><span class="contact-link-val">saadahmadofficial1</span></div></div></a>
+        <a href="https://www.youtube.com/@DubaiDecoded" target="_blank" class="contact-link"><span class="contact-link-icon">▶️</span><div><span class="contact-link-label">YouTube</span><span class="contact-link-val">@DubaiDecoded</span></div></a>
+        <div class="contact-link" style="cursor:default;"><span class="contact-link-icon">📍</span><div><span class="contact-link-label">Location</span><span class="contact-link-val">Dubai, UAE — Open to GCC</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Saad Ahmad · Filmmaker &amp; Content Creator</span>
+    <span>Dubai, UAE · © 2026</span>
+    <span>🥇 Gold Medalist · GPA 3.8/4.0</span>
+  </div>
+
+</div>
+
+<script>
+const P=()=>`<div class="play-btn"><svg viewBox="0 0 16 16"><path d="M3 2l11 6-11 6z"/></svg></div>`;
+const A=()=>`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h8M6 2l4 4-4 4"/></svg>`;
+const rgb2hex=s=>{const[r,g,b]=s.split(',').map(n=>+n.trim());return'#'+[r,g,b].map(v=>v.toString(16).padStart(2,'0')).join('');};
+
+const S={
+  realestate:{
+    accent:'77,184,122',tag:'🏠 Property Video Specialist',
+    title:'Real Estate Content Creator · Dubai, UAE',
+    pitch:`Buyers and tenants decide in seconds whether to enquire — and that decision is almost always based on the video.<br><br>I'm <strong>Saad Ahmad</strong>, producing <strong>3 to 4 high-quality property videos every two weeks</strong> for agencies across Dubai and Sharjah. Cinematic walkthroughs, POV tours, render showcases, and UGC ads that generate significantly more enquiries than static photos.<br><br><strong>Based in Dubai and Sharjah. Free sample property video this week — no commitment.</strong>`,
+    stats:[['20+','UAE Locations Shot'],['3–4','Videos / Fortnight'],['4','Content Types'],['24hr','Delivery Time']],
+    pkgHeading:'📦 Real Estate Package',
+    packages:[
+      {icon:'🏠',num:'2',title:'Cinematic Walkthroughs',desc:'Full property tours with smooth gimbal, natural light framing, and lifestyle storytelling. Delivered within 24 hrs.',badge:'24–48 hrs'},
+      {icon:'👁️',num:'1–2',title:'POV First-Person Tours',desc:'Immersive first-person tours that perform extremely well on Reels and TikTok. Drives direct enquiries.',badge:'24–48 hrs'},
+      {icon:'📣',num:'1',title:'Social UGC Promo',desc:'Short punchy property promo with text overlays and trending audio — ready to post immediately.',badge:'24–48 hrs'},
+    ],
+    primaryHeading:'🏠 Real Estate Work',
+    projects:[
+      {href:'https://drive.google.com/drive/folders/1izzkxCEN781G_dk5_Fr54XiZJzjWti_l?usp=drive_link',bg:'linear-gradient(135deg,#001a08 0%,#000a02 100%)',icon:'👁️',cat:'Real Estate · POV Tour',delivery:'24–48 hrs',title:'POV Property Tours — First-Person Walkthroughs',meta:'Dubai & Sharjah',desc:'First-person immersive property tours that put the viewer physically inside the space. Extremely high-performing format on Instagram Reels and TikTok — proven to drive direct enquiry calls and messages.',link:'View POV Tours'},
+      {href:'https://drive.google.com/drive/folders/1tLZwh96fQpil7QHN5Lm11Xr-VM5antnT?usp=drive_link',bg:'linear-gradient(135deg,#001818 0%,#000c0c 100%)',icon:'🎬',cat:'Real Estate · Walkthrough',delivery:'24–48 hrs',title:'Cinematic Property Walkthroughs',meta:'Dubai & Sharjah Properties',desc:'Gimbal-stabilised full property tours shot across Dubai and Sharjah. Apartments, villas, and developer showcases with consistent cinematic quality, smooth movement, and lifestyle-first framing.',link:'View Walkthroughs'},
+      {href:'https://drive.google.com/drive/folders/1qqKu9dgleDICyJYccMBgKlEprheQ1KKu?usp=drive_link',bg:'linear-gradient(135deg,#000a1a 0%,#00060e 100%)',icon:'🏗️',cat:'Real Estate · Renders',delivery:'24–48 hrs',title:'3D Render Showcase Videos',meta:'Off-Plan Developer Projects',desc:'Render-based property showcase videos for off-plan developments. Visual storytelling around CGI and architectural renders — ideal for developer marketing and investor presentations.',link:'View Renders'},
+      {href:'https://drive.google.com/drive/folders/150X1HOAADzReSifycwIoVJKMhpDP6qtG?usp=drive_link',bg:'linear-gradient(135deg,#0a1800 0%,#050e00 100%)',icon:'📣',cat:'Real Estate · UGC Ads',delivery:'24–48 hrs',title:'Real Estate UGC Ad Creatives',meta:'Social-First Property Promos',desc:'UGC-style property ad creatives for Meta, TikTok, and Instagram. Authentic social-native format with direct CTAs that converts viewers into enquiries. Includes off-plan, ready, and rental properties.',link:'View UGC Ads',wide:true},
+    ],
+    steps:[
+      {num:'01',title:'Send a Listing',desc:"Share one property address. I'll visit, shoot, and deliver a finished video within 24 hours. Free, no commitment."},
+      {num:'02',title:'Review Quality',desc:"Watch the video before agreeing to anything. Only proceed if you're genuinely impressed."},
+      {num:'03',title:'Monthly Package',desc:'3 to 4 property videos per fortnight. Fixed monthly rate. No hidden costs.'},
+      {num:'04',title:'More Enquiries',desc:'Video listings consistently outperform photo-only listings. More views, more calls, faster sales and lettings.'},
+    ],
+    contactIntro:"Share one property with me. I'll visit, shoot, and deliver a free sample video within 24 hours. See the quality before committing to a package.",
+    waMsg:'Hi Saad, I saw your real estate portfolio and would like a free sample video for one of our property listings.',
+  },
+  automotive:{
+    accent:'232,160,32',tag:'🚗 Automotive Video Specialist',
+    title:'Automotive Content Creator · Dubai, UAE',
+    pitch:`Your showroom has great cars. But if buyers can't find you on Instagram or TikTok, you're losing sales to showrooms that do.<br><br>I'm <strong>Saad Ahmad</strong> — creating cinematic car content for showrooms across Dubai and Sharjah. <strong>12 to 15 short videos per month</strong>: walkarounds, interior tours, offer announcements, and Reels that bring buyers through your door.<br><br><strong>First sample video is free. I'll visit this week, film one car, deliver within 24 hours. No commitment.</strong>`,
+    stats:[['12–15','Videos / Month'],['24hr','Delivery Time'],['3+','Years UAE'],['3×','Avg Engagement ↑']],
+    pkgHeading:'📦 Automotive Monthly Package',
+    packages:[
+      {icon:'🎬',num:'5–6',title:'Car Walkaround Reels',desc:'Cinematic exterior and interior tours built to stop the scroll on Instagram and TikTok.',badge:'24–48 hrs'},
+      {icon:'💰',num:'3–4',title:'Offer & Promo Videos',desc:'Price drops and seasonal deals — edited fast and delivered within 24 hours of your brief.',badge:'24–48 hrs'},
+      {icon:'📱',num:'4–5',title:'Social Clips & Stories',desc:'Trending-format clips for Stories, Shorts, and TikTok FYP. Keeps your account active daily.',badge:'24–48 hrs'},
+    ],
+    primaryHeading:'🚗 Automotive Work',
+    projects:[
+      {href:'https://drive.google.com/drive/folders/1Xh824g8jEpj6zTAu3zaIPJeNE84nbnKn?usp=drive_link',bg:'linear-gradient(135deg,#1a1000 0%,#0d0800 100%)',icon:'🚗',cat:'Automotive · Interior',delivery:'24–48 hrs',title:'Toyota Corolla — Cinematic Interior Showcase',meta:'UAE Automotive Shoot',desc:'Detailed interior walkthrough with close-up shots of dashboard, leather trim, entertainment system, and ambient lighting. Smooth transitions with colour-graded warm tones.',link:'View Footage'},
+      {href:'https://www.youtube.com/@DubaiDecoded',bg:'linear-gradient(135deg,#0a1018 0%,#050810 100%)',icon:'🏙️',cat:'UAE · Location Shoots',delivery:'24–48 hrs',title:'Dubai Decoded — On-Location Visual Storytelling',meta:'20+ UAE Locations',desc:'Gimbal-stabilised smartphone footage across 20+ UAE locations. Proves ability to produce cinematic quality content with minimal setup — directly applicable to on-lot car shoots and showroom walkarounds.',link:'Watch YouTube'},
+      {href:'https://drive.google.com/drive/folders/1fycKPFXczJAhqX0dVMo63gIKnI1K8SPg?usp=drive_link',bg:'linear-gradient(135deg,#180e00 0%,#0d0700 100%)',icon:'📣',cat:'UGC Ads · Offer Promos',delivery:'24–48 hrs',title:'UGC Ad Creatives — Applicable to Car Offers',meta:'Amana MENA Campaign Format',desc:'4–8 UGC-style ad creatives per campaign produced for Amana MENA. The same fast-turnaround, authentic, social-native format works perfectly for car offer announcements, seasonal deals, and new arrival showcases.<br><br><strong style="color:var(--accent)">Proven:</strong> 30–40% revenue uplift during campaign periods.',link:'View UGC Work',wide:true},
+    ],
+    steps:[
+      {num:'01',title:'Free Sample Visit',desc:'I come to your showroom this week, film 1 car, deliver a Reel within 24 hrs. No cost, no commitment.'},
+      {num:'02',title:'Review the Edit',desc:'Watch the finished video before agreeing to anything. Only move forward if you love what you see.'},
+      {num:'03',title:'Agree a Package',desc:'12 to 15 videos per month at a fixed monthly rate. No surprise charges.'},
+      {num:'04',title:'Post & Grow',desc:'More Instagram visibility. More enquiries. More buyers walking through the door.'},
+    ],
+    contactIntro:"I can visit your showroom this week for a free sample shoot. One finished Reel — no paperwork, no commitment — so you can judge quality before deciding anything.",
+    waMsg:"Hi Saad, I saw your automotive content portfolio and I'm interested in a free sample video for my car showroom.",
+  },
+  finance:{
+    accent:'91,141,238',tag:'📊 FinTech Content Specialist',
+    title:'FinTech & Finance Content Creator · Dubai, UAE',
+    pitch:`Financial content is hard — too technical and you lose the audience, too simple and you lose credibility. I've spent <strong>2+ years solving this exact problem at Amana MENA</strong>, one of the region's leading FinTech brokers.<br><br>I create <strong>compliance-safe educational and marketing videos</strong> covering stocks, forex, commodities, crypto, and CFDs — in English, Urdu, and Arabic — that build trust and drive app adoption.<br><br><strong>Zero compliance violations across 2 years. Organic views scaled from 500 to 7,000+ per video.</strong>`,
+    stats:[['2+','Years FinTech'],['3×','Organic Growth'],['0','Compliance Violations'],['3','Languages']],
+    pkgHeading:'📦 Finance Content Package',
+    packages:[
+      {icon:'📹',num:'8–12',title:'Educational Market Videos',desc:'Stocks, forex, crypto explainers. Research-driven scripts simplified for retail audiences. EN/UR/AR.',badge:'24–48 hrs'},
+      {icon:'📣',num:'4–6',title:'UGC Ad Creatives',desc:'Meta, TikTok and Google ad creatives for app acquisition campaigns. Compliance reviewed before delivery.',badge:'24–48 hrs'},
+      {icon:'✨',num:'2–3',title:'Motion Graphic Branding',desc:'Animated brand videos, product feature announcements, and kinetic typography branding content.',badge:'48–72 hrs'},
+    ],
+    primaryHeading:'📊 Finance & FinTech Work',
+    projects:[
+      {href:'https://drive.google.com/drive/folders/12rdABjmteiIk2i3uzFN1WpjraETaZCXM?usp=drive_link',bg:'linear-gradient(135deg,#0d2447 0%,#071528 100%)',icon:'📊',cat:'FinTech · Trading Education',delivery:'24–48 hrs',title:'Amana MENA — Full Trading Education Series',meta:'Stocks · Forex · Crypto · Commodities · CFDs',desc:'Complete library of trading education content covering stocks, forex, commodities, crypto, and CFDs. Research-driven scripts simplified for MENA retail audiences. Delivered in English, Urdu, and Arabic with zero compliance violations.',link:'View All Content'},
+      {href:'https://drive.google.com/drive/folders/12rdABjmteiIk2i3uzFN1WpjraETaZCXM?usp=drive_link',bg:'linear-gradient(135deg,#0a1830 0%,#050f1e 100%)',icon:'💹',cat:'Market Analysis · Research Content',delivery:'24–48 hrs',title:'Silver Price Analysis — $50 Target Forecast',meta:'March 2024 · Achieved Dec 2024',desc:"Research-driven market prediction content forecasting silver's $50+ target in March 2024. Target achieved by December 2024. Demonstrates ability to identify emerging market narratives early and build credible, shareable content.",link:'View Analysis Content'},
+      {href:'https://drive.google.com/drive/folders/12rdABjmteiIk2i3uzFN1WpjraETaZCXM?usp=drive_link',bg:'linear-gradient(135deg,#1a1030 0%,#0d0820 100%)',icon:'₿',cat:'Crypto · Comparative Analysis',delivery:'24–48 hrs',title:'Bitcoin vs Gold — Store of Value Comparison',meta:'Crypto Education · MENA Traders',desc:"Comparative analysis content covering Bitcoin and Gold's historical returns, volatility profiles, store of value mechanics, and risk-adjusted performance. Available in EN/UR/AR.",link:'View Content'},
+      {href:'https://drive.google.com/drive/folders/10yNC2smEsq7OIqtA0s6fdYjheVM4QMin?usp=drive_link',bg:'linear-gradient(135deg,#0a0d1a 0%,#050710 100%)',icon:'✨',cat:'Motion Graphics · Brand Video',delivery:'48–72 hrs',title:'Amana Brand Videos — Motion Graphics',meta:'FinTech Brand · App Promotions',desc:'Animated branding videos featuring motion graphics, kinetic typography, and branded transitions for Amana MENA. Used for app launch promotions and brand identity reinforcement across all digital channels.',link:'View Motion Work',wide:true},
+    ],
+    steps:[
+      {num:'01',title:'Content Brief',desc:'Share campaign objectives, compliance guidelines, and target audience. I research and script accordingly.'},
+      {num:'02',title:'Script Review',desc:'Script and storyboard sent for compliance and marketing review before filming begins.'},
+      {num:'03',title:'Produce & Edit',desc:'Filmed, edited, and colour graded to brand guidelines. Multi-language versions available.'},
+      {num:'04',title:'Deliver & Optimise',desc:'Content delivered ready to post. Performance tracked and future content optimised from data.'},
+    ],
+    contactIntro:'I understand regulated environments, compliance requirements, and how to balance professionalism with audience engagement. Happy to discuss your content calendar.',
+    waMsg:"Hi Saad, I saw your FinTech content portfolio and I'd like to discuss content creation for our finance brand.",
+  },
+  restaurant:{
+    accent:'230,100,60',tag:'🍽️ F&B Video Specialist',
+    title:'Restaurant & F&B Content Creator · Dubai, UAE',
+    pitch:`In Dubai, people decide where to eat based on what they see on Instagram and TikTok — before they ever step outside.<br><br>I create <strong>8 to 10 short-form videos per month</strong> for restaurants and cafes: food close-ups, ambience walkthroughs, kitchen action, and trending Reels that drive foot traffic and online reservations.<br><br><strong>I'll visit your restaurant this week and shoot a free sample video. No cost, no commitment.</strong>`,
+    stats:[['8–10','Videos / Month'],['24hr','Delivery Time'],['3+','Years UAE'],['3×','Avg Engagement ↑']],
+    pkgHeading:'📦 Restaurant Monthly Package',
+    packages:[
+      {icon:'🍔',num:'4–5',title:'Food Close-Up Reels',desc:'Cinematic food shots with motion, steam, and texture detail. Trending audio included.',badge:'24–48 hrs'},
+      {icon:'🏮',num:'2–3',title:'Ambience & Venue Tours',desc:'Interior atmosphere shots and table-setting content that sells the experience before guests arrive.',badge:'24–48 hrs'},
+      {icon:'👨‍🍳',num:'2',title:'Kitchen & Chef Content',desc:'Behind-the-scenes prep clips. Authentic, high-engagement content that builds brand personality.',badge:'24–48 hrs'},
+    ],
+    primaryHeading:'🍽️ Lifestyle & Visual Work',
+    projects:[
+      {href:'https://drive.google.com/drive/folders/1QlvCQHG88FcLjIUYsZKhV1ZanFiamZ4D?usp=drive_link',bg:'linear-gradient(135deg,#2d1a0a 0%,#150a05 100%)',icon:'💄',cat:'Beauty · Product Close-Ups',delivery:'24–48 hrs',title:'Nazih Group — Close-Up Product & Lifestyle Shots',meta:'Beauty Brand · Sharjah & Dubai',desc:'Product and lifestyle close-up shots for international beauty brands. Cinematic detail work, colour-accurate lighting, and brand-aligned framing — the same visual discipline directly applicable to food and F&B close-up content.',link:'View Work'},
+      {href:'https://www.youtube.com/@DubaiDecoded',bg:'linear-gradient(135deg,#1a0a00 0%,#0d0500 100%)',icon:'🏙️',cat:'UAE · Atmosphere & Locations',delivery:'24–48 hrs',title:'Dubai Decoded — Atmosphere & Lifestyle Footage',meta:'20+ UAE Locations',desc:'Walk-tour content across 20+ UAE locations capturing atmosphere, architecture, and the energy of Dubai and Sharjah. Demonstrates ability to capture environmental storytelling — essential for restaurant ambience content.',link:'Watch YouTube'},
+      {href:'https://drive.google.com/drive/folders/1fycKPFXczJAhqX0dVMo63gIKnI1K8SPg?usp=drive_link',bg:'linear-gradient(135deg,#1a0e00 0%,#0e0700 100%)',icon:'📣',cat:'UGC Ads · Social-First Format',delivery:'24–48 hrs',title:'UGC Ad Creatives — Social-Native Format',meta:'Proven Campaign Performance',desc:'UGC ad creatives proven to drive 30–40% revenue uplift during campaign periods. The authentic, social-first format performs exceptionally well for restaurant new menu launches, seasonal promotions, and offer announcements.',link:'View UGC Work',wide:true},
+    ],
+    steps:[
+      {num:'01',title:'Free Sample Visit',desc:'I come to your restaurant, film food and atmosphere, deliver a finished Reel within 24 hrs. No charge.'},
+      {num:'02',title:'Review the Quality',desc:'Watch the video before committing to a package. Only proceed if the content genuinely impresses you.'},
+      {num:'03',title:'Monthly Package',desc:'8 to 10 videos per month. Food, ambience, and team content. Fixed monthly rate.'},
+      {num:'04',title:'Fill More Tables',desc:'Regular content drives discovery on Instagram and TikTok. More views means more walk-ins and bookings.'},
+    ],
+    contactIntro:"I'll visit your restaurant this week and create a free sample — food close-ups, ambience, and atmosphere. See exactly what you'd be getting before committing to anything.",
+    waMsg:"Hi Saad, I saw your F&B content portfolio and I'd like a free sample video for my restaurant.",
+  },
+  events:{
+    accent:'180,120,220',tag:'🎪 Events & Corporate Video',
+    title:'Corporate Events Videographer · Dubai, UAE',
+    pitch:`A corporate event or brand activation deserves to live beyond the day itself — as content that markets your company, builds credibility, and fills the next event.<br><br>I cover <strong>corporate events, brand activations, and community gatherings</strong> across the UAE: a full landscape highlight film plus 3 to 4 vertical social Reels, delivered <strong>within 24 to 48 hours of the event ending</strong>.<br><br><strong>Served Amana MENA, Nazih Group, PAD, and Pakistan Riders Group UAE events. Available for bookings across all Emirates.</strong>`,
+    stats:[['24–48hr','Post-Event Delivery'],['3+','Years UAE Events'],['4K','Resolution'],['Landscape+Vertical','Both Formats']],
+    pkgHeading:'📦 Event Coverage Package',
+    packages:[
+      {icon:'🎬',num:'1',title:'Highlight Film (Landscape)',desc:'3 to 5 minute cinematic highlight reel. Suitable for website, YouTube, and LinkedIn.',badge:'24–48 hrs'},
+      {icon:'📱',num:'3–4',title:'Social Reels (Vertical)',desc:'Key moments, speaker highlights, crowd energy — edited for Instagram, TikTok and Stories.',badge:'24–48 hrs'},
+      {icon:'📸',num:'Bonus',title:'B-Roll & Raw Footage',desc:'Select stills and raw B-roll delivered alongside edited content for your team to use freely.',badge:'48–72 hrs'},
+    ],
+    primaryHeading:'🎪 Events & Corporate Work',
+    projects:[
+      {href:'https://drive.google.com/file/d/1Nr7xVtkHESxPn4RHptMmIZKnI1K8SPg/view?usp=drive_link',bg:'linear-gradient(135deg,#180a2d 0%,#0d0518 100%)',icon:'🎪',cat:'Corporate Event · Highlight Film',delivery:'24–48 hrs',title:'Corporate Event Highlight Reel — Amana MENA',meta:'Corporate Event · Dubai',desc:'Full corporate event coverage for Amana MENA. Captured keynote speakers, audience engagement, networking sessions, and brand moments. Edited into a landscape highlight film for LinkedIn and YouTube, plus vertical cuts for Stories and TikTok.',link:'Watch Highlight Film'},
+      {href:'https://drive.google.com/file/d/1X7TiA7-aLcgDho1WwoaWd4IUcWmlvJUS/view?usp=drive_link',bg:'linear-gradient(135deg,#2d0a1a 0%,#180510 100%)',icon:'💄',cat:'Brand Activation · Event',delivery:'24–48 hrs',title:'Brand Event Highlight — Nazih Group',meta:'Beauty Brand Activation · Sharjah',desc:'Full event coverage for Nazih Group beauty brand activation. Product launches, ambassador presentations, salon demonstrations, and brand atmosphere all captured. Edited into a polished highlight film and short social clips.',link:'Watch Event Film'},
+      {href:'https://drive.google.com/drive/folders/1fycKPFXczJAhqX0dVMo63gIKnI1K8SPg?usp=drive_link',bg:'linear-gradient(135deg,#0a0a1a 0%,#050510 100%)',icon:'🤝',cat:'Community Events · UAE',delivery:'24–48 hrs',title:'PAD & Pakistan Riders Group — Community Events',meta:'Ongoing · 2 Years Coverage',desc:'Ongoing event coverage for community gatherings across the UAE including PAD (Pakistan Association Dubai) and Pakistan Riders Group UAE. Cinematic highlights and social-first edits delivered consistently over 2+ years.',link:'View Community Work'},
+      {href:'https://shorturl.at/nEIyK',bg:'linear-gradient(135deg,#1a1a2d 0%,#0a0a15 100%)',icon:'🎭',cat:'Short Films · Commercial Direction',delivery:'72–96 hrs',title:'Short Films & Digital Commercials — SA Productions',meta:'14+ Films · 2 Commercials · International Selections',desc:'14+ short films and 2 digital commercials directed through own production studio. Full-cycle production from script to post. International festival selections including Lift-Off Filmmaker Sessions and Student World Impact Film Festival.',link:'View Portfolio',wide:true},
+    ],
+    steps:[
+      {num:'01',title:'Share Event Details',desc:'Date, venue, expected guests, and what key moments need to be captured.'},
+      {num:'02',title:'Pre-Event Prep',desc:'I review the run-of-show, identify key shot opportunities, confirm equipment.'},
+      {num:'03',title:'Full Event Coverage',desc:'Multiple angles, speaker close-ups, crowd atmosphere, branding moments — all captured.'},
+      {num:'04',title:'48hr Delivery',desc:"Highlight film and social Reels delivered within 48 hours. Ready to post immediately."},
+    ],
+    contactIntro:"Share your event details — date, venue, and what you need. I'll confirm availability and send a quote within a few hours.",
+    waMsg:"Hi Saad, I saw your events portfolio and I'd like to discuss coverage for our upcoming corporate event.",
+  },
+};
+
+function render(key){
+  const d=S[key];
+  const dynEls=document.querySelectorAll('.dyn');
+  dynEls.forEach(el=>el.classList.add('out'));
+  setTimeout(()=>{
+    document.documentElement.style.setProperty('--accent-rgb',d.accent);
+    document.documentElement.style.setProperty('--accent',rgb2hex(d.accent));
+    document.getElementById('profileTitle').textContent=d.title;
+    document.getElementById('accentTag').textContent=d.tag;
+    document.getElementById('pitchText').innerHTML=d.pitch;
+    document.getElementById('statsGrid').innerHTML=d.stats.map(([n,l])=>`<div class="stat-box"><div class="stat-num">${n}</div><div class="stat-label">${l}</div></div>`).join('');
+    document.getElementById('pkgHeading').textContent=d.pkgHeading;
+    document.getElementById('packageGrid').innerHTML=d.packages.map(p=>`<div class="package-card">${p.badge?`<div class="pkg-badge">⚡ ${p.badge}</div>`:''}<div class="pkg-icon">${p.icon}</div><div class="pkg-num">${p.num}</div><div class="pkg-title">${p.title}</div><div class="pkg-desc">${p.desc}</div></div>`).join('');
+    document.getElementById('primaryWorkHeading').textContent=d.primaryHeading;
+    document.getElementById('primaryGrid').innerHTML=d.projects.map(p=>`<a href="${p.href}" target="_blank" class="project-card${p.wide?' project-card-wide':''}"><div class="project-thumb" style="background:${p.bg}"><span class="thumb-icon">${p.icon}</span><div class="thumb-overlay">${P()}</div><div class="thumb-cat">${p.cat}</div>${p.delivery?`<div class="delivery-badge">⚡ ${p.delivery}</div>`:''}</div><div class="project-body"><div class="project-title">${p.title}</div>${p.meta?`<div class="project-meta">${p.meta}</div>`:''}<div class="project-desc">${p.desc}</div><span class="project-link">${p.link} ${A()}</span></div></a>`).join('');
+    document.getElementById('stepsRow').innerHTML=d.steps.map(s=>`<div class="step-card"><div class="step-num">${s.num}</div><div class="step-title">${s.title}</div><div class="step-desc">${s.desc}</div></div>`).join('');
+    document.getElementById('contactIntro').textContent=d.contactIntro;
+    document.getElementById('waBtn').href=`https://wa.me/971561911332?text=${encodeURIComponent(d.waMsg)}`;
+    dynEls.forEach(el=>el.classList.remove('out'));
+  },260);
+}
+
+document.getElementById('selectorGrid').addEventListener('click',e=>{
+  const btn=e.target.closest('.sector-btn');
+  if(!btn)return;
+  document.querySelectorAll('.sector-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  render(btn.dataset.s);
+});
+
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
+},{threshold:.07});
+document.querySelectorAll('.fade-in').forEach(el=>io.observe(el));
+
+render('realestate');
+</script>
+</body>
+</html>
